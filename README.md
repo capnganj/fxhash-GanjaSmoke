@@ -1,17 +1,14 @@
-FXHASH Generative Token webpack boilerplate
+@capnganj first fxhash project: Hash Smoke
 ================
 
-A boilerplate to automate and ease the creation of Generative Tokens on fxhash. This project uses [webpack](https://webpack.js.org/) and [webpack-dev-server](https://github.com/webpack/webpack-dev-server) to improve the development and deployment experience.
-
-Before diving into the development of your token, we recommend reading the [Guide to mint a Generative Token](https://fxhash.xyz/articles/guide-mint-generative-token) to get some understanding of the process.
-
-If you are looking for a simpler boilerplate, you can use the [fxhash simple boilerplate](https://github.com/fxhash/fxhash-simple-boilerplate) instead.
+I can't stand how awesome fxhash is, so diving in with some smoke clouds.  Hash Smoke clouds.  More fun to follow if this wroks...
 
 
 # Scope of this project
 
-* provide a local environment in which you can iterate and use modern features from the javascript ecosystem
-* automate the creation of a .zip file ready to be uploaded on fxhash
+* p5js learning.  I learned processing in the stone age, so looking forward to this.
+* fxhash learning.  Like I said, I can't stand it ... so learning by doing.
+* Smoke weed and not too much hash.  Gotta watch it with those extracts frens!
 
 
 # How to use

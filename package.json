@@ -1,7 +1,7 @@
 {
-  "name": "fxhash-boilerplate-webpack",
+  "name": "fxhash-hash-smoke",
   "version": "1.0.0",
-  "description": "a boilerplate to create a generative token on fxhash",
+  "description": "first @capnganj fxhash project",
   "main": "index.js",
   "author": "fxhash",
   "license": "MIT",

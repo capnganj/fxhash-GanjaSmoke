@@ -1,7 +1,7 @@
 @capnganj first fxhash project: Hash Smoke
 ================
 
-I can't stand how awesome fxhash is, so diving in with some smoke clouds.  Hash Smoke clouds.  More fun to follow if this wroks...
+I can't stand how awesome fxhash is, so diving in with some smoke clouds.  Hash Smoke clouds.  More fun to follow if this works...
 
 
 # Scope of this project

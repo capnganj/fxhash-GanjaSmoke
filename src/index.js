@@ -43,12 +43,12 @@ const s = ( sk ) => {
    
   // FX Features
     window.$fxhashFeatures = {
-      "Thickness" : feet.thickness.name,
+      "Depth" : feet.depth.tag,
       "Color" : feet.color.name,
-      "Cough" : feet.thickness.value,
-      "Hack" : feet.hack,
-      "Squint": feet.squint,
-      "Wince" : feet.wince
+      "Cough" : feet.cough.tag,
+      "Hack" : feet.hack.tag,
+      "Squint": feet.squint.tag,
+      "Laugh" : feet.laugh.tag
     };
 
     console.log(window.$fxhashFeatures);

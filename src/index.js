@@ -3,6 +3,7 @@
 
 //imports
 import p5 from 'p5';
+import { HashSmokeFeatures } from './hashSmokerFeatures';
 
 //p5 sketch instance
 const s = ( sk ) => {
@@ -36,15 +37,18 @@ const s = ( sk ) => {
     //demo how to set color and size features / vars using the p5 random
     col=sk.int(sk.random(255));
     sizee=sk.int(sk.random(sk.width/2));
+
+    //new featuresClass
+    let feet = new HashSmokeFeatures();
    
   // FX Features
     window.$fxhashFeatures = {
-   "Thickness" : sizee,
-   "Color" : col,
-   "Cough" : 0.5,
-   "Hack" : 0.5,
-   "Squint": 0.5,
-   "Wince" : 0.5
+      "Thickness" : feet.thickness.name,
+      "Color" : feet.color.name,
+      "Cough" : feet.thickness.value,
+      "Hack" : feet.hack,
+      "Squint": feet.squint,
+      "Wince" : feet.wince
     };
 
     console.log(window.$fxhashFeatures);

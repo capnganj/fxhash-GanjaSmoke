@@ -4,14 +4,14 @@
 //imports
 import p5 from 'p5';
 import { HashSmokeFeatures } from './hashSmokerFeatures';
+import { interpolateYlGn } from 'd3-scale-chromatic';
 
 //p5 sketch instance
 const s = ( sk ) => {
 
   //global sketch variable
   let seed = 0; //seed Hash
-  let sizee = 0; // rect size
-  let col = 0; //color
+  let rects = [];
 
   //sketch setup
   sk.setup = () => {
@@ -21,22 +21,20 @@ const s = ( sk ) => {
     seed=sk.int(fxrand() * 100000000); // FXHASH seed rand
     sk.randomSeed(seed); 
 
-    //TODO choose the @capnganj d3 color scheme
-    //Color feature in fxhash
+    //populate array of objects for rect size
+    for (let i = 0; i < 5; i++) {
 
-    //TODO set how dense this hash rip is
-    //Thickness feature in fxhash
+      //create color and set alpha
+      const c = sk.color(interpolateYlGn(fxrand()));
+      c.setAlpha(sk.map(fxrand(), 0, 1, 25, 150));
 
-    //TODO - radius min and max properties; opacity min and max values
-    //Cough: min radius
-    //Hack: max radius
-    //Squint: min opacity
-    //Wince: max opacity
-
-  
-    //demo how to set color and size features / vars using the p5 random
-    col=sk.int(sk.random(255));
-    sizee=sk.int(sk.random(sk.width/2));
+      //properties to construct rects below
+      const element = {
+        "size": sk.int(sk.random(sk.width/2)),
+        "color": c
+      };
+      rects.push(element);
+    }
 
     //new featuresClass
     let feet = new HashSmokeFeatures();
@@ -50,7 +48,6 @@ const s = ( sk ) => {
       "Squint": feet.squint.tag,
       "Laugh" : feet.laugh.tag
     };
-
     console.log(window.$fxhashFeatures);
   };
 
@@ -60,17 +57,14 @@ const s = ( sk ) => {
 
     //TO DO - set the background color.  This should be a desaturated inverse color average of the colors in the d3 color scheme
     sk.background(255);
-
+    sk.noStroke();
+    sk.rectMode(sk.CENTER);
 
     //TO DO - draw a radial pattern of circles using 
-
-    //set default stroke and fill?  this should be removed
-    sk.stroke(0);
-    sk.fill(col);
-    
-    //set rect mode to center and draw that sucker
-    sk.rectMode(sk.CENTER);
-    sk.rect(sk.width/2,sk.height/2,sizee,sizee);
+    rects.forEach(element => {
+      sk.fill(element.color);
+      sk.rect(sk.width/2,sk.height/2,element.size,element.size);
+    });
   };
 
   //handle window resize

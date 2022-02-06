@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "first @capnganj fxhash project",
   "main": "index.js",
-  "author": "fxhash",
+  "author": "capnganj",
   "license": "MIT",
   "scripts": {
     "build": "webpack --config ./config/webpack.config.prod.js",
     "start": "webpack serve --config ./config/webpack.config.dev.js"
   },
   "dependencies": {
-    "p5": "1.4.1"
+    "p5": "1.4.1",
+    "d3": "7.3.0",
+    "d3-scale-chromatic": "3.0.0"
   },
   "devDependencies": {
     "adm-zip": "^0.5.9",

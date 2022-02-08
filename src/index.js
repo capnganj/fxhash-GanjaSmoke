@@ -11,6 +11,7 @@ const s = ( sk ) => {
 
   //global sketch variables
   let cloud = [];
+  let hyp = -1.0;
 
   //sketch setup
   sk.setup = () => {
@@ -30,9 +31,10 @@ const s = ( sk ) => {
     };
 
     //Generate cloud data
-    drawCloud(sk.width/2, sk.height/2, 600, 7);
+    hyp = sk.windowWidth + sk.windowHeight / 2;
+    drawCloud(sk.windowWidth/2, sk.windowWidth/2, hyp * 0.222, 7);
     console.log("fxhashFeatures", window.$fxhashFeatures);
-    console.log("cloudData", cloud);
+    //console.log("cloudData", cloud);
   };
 
 
@@ -40,7 +42,7 @@ const s = ( sk ) => {
   sk.draw = () => {
 
     //TO DO - set the background color.  This should be a desaturated inverse color average of the colors in the d3 color scheme
-    sk.background(255);
+    sk.background(0);
     sk.noStroke();
     
 
@@ -69,8 +71,8 @@ const s = ( sk ) => {
       let branch = sk.map(fxrand(), 0, 1, 2, 6);
       for (let i = 0; i < branch; i++) {
         let a = sk.map(fxrand(), 0, 1, 0, sk.TWO_PI);
-        let newX = x + Math.cos(a) * 50 * num;
-        let newY = y + Math.sin(a) * 50 * num;
+        let newX = x + Math.cos(a) * (hyp * 0.0222) * num;
+        let newY = y + Math.sin(a) * (hyp * 0.0222) * num;
         drawCloud(newX, newY, sk.map(fxrand(),0,1,rad/1.5,rad/3), num);
       }
     }
@@ -79,6 +81,9 @@ const s = ( sk ) => {
   //handle window resize
   sk.windowResized = () => {
     sk.resizeCanvas(sk.windowWidth, sk.windowHeight);
+    console.log("windowWidth", sk.windowWidth);
+    console.log("width", sk.width);
+
   };
 };
 

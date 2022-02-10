@@ -4,7 +4,6 @@
 //imports
 import p5 from 'p5';
 import { HashSmokeFeatures } from './hashSmokerFeatures';
-import { interpolateYlGn } from 'd3-scale-chromatic';
 
 //p5 sketch instance
 const s = ( sk ) => {
@@ -12,27 +11,38 @@ const s = ( sk ) => {
   //global sketch variables
   let cloud = [];
   let hyp = -1.0;
+  let feet = {};
 
   //sketch setup
   sk.setup = () => {
     sk.createCanvas(sk.windowWidth, sk.windowHeight);
 
     //new featuresClass
-    let feet = new HashSmokeFeatures();
+    feet = new HashSmokeFeatures();
+
+    //color drives palette
+    //depth drives number of recursive draw cloud layers
+    //cough drives initial circle radius size
+    //squint drives smallest circle radius size
+    //laugh drives how far the could spreads out from the center 
    
-  // FX Features
+    // FX Features
     window.$fxhashFeatures = {
       "Depth" : feet.depth.tag,
-      "Color" : feet.color.name,
+      "Palette" : feet.color.name,
       "Cough" : feet.cough.tag,
-      "Hack" : feet.hack.tag,
       "Squint": feet.squint.tag,
       "Laugh" : feet.laugh.tag
     };
 
     //Generate cloud data
     hyp = sk.windowWidth + sk.windowHeight / 2;
-    drawCloud(sk.windowWidth/2, sk.windowWidth/2, hyp * 0.222, 7);
+    drawCloud(
+      sk.windowWidth/2, 
+      sk.windowHeight/2, 
+      hyp * 0.222, 
+      feet.depth.value
+    );
     console.log("fxhashFeatures", window.$fxhashFeatures);
     //console.log("cloudData", cloud);
   };
@@ -56,7 +66,7 @@ const s = ( sk ) => {
 
   //recursive smoke cloud
   function drawCloud( x, y, rad, num){
-    const c = sk.color(interpolateYlGn(fxrand()));
+    const c = sk.color(feet.interpolateFn(fxrand()));
     c.setAlpha(sk.map(fxrand(), 0, 1, 50, 255/num));
     cloud.push(
       {
@@ -71,9 +81,15 @@ const s = ( sk ) => {
       let branch = sk.map(fxrand(), 0, 1, 2, 6);
       for (let i = 0; i < branch; i++) {
         let a = sk.map(fxrand(), 0, 1, 0, sk.TWO_PI);
+        //use the laugh param to drive how far the cloud spreads out
         let newX = x + Math.cos(a) * (hyp * 0.0222) * num;
         let newY = y + Math.sin(a) * (hyp * 0.0222) * num;
-        drawCloud(newX, newY, sk.map(fxrand(),0,1,rad/1.5,rad/3), num);
+        //use the squint param to drive smallest radius
+        drawCloud(
+          newX, newY, 
+          sk.map(fxrand(),0,1, rad/1.5, rad/3), 
+          num
+        );
       }
     }
   }

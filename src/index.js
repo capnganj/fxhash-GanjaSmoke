@@ -38,8 +38,8 @@ const s = ( sk ) => {
     //Generate cloud data
     hyp = sk.windowWidth + sk.windowHeight / 2;
     drawCloud(
-      sk.windowWidth/2, 
-      sk.windowHeight/2, 
+      0, 
+      0, 
       hyp * 0.222, 
       feet.depth.value
     );
@@ -60,7 +60,11 @@ const s = ( sk ) => {
     cloud.forEach(element => {
       sk.ellipseMode(sk.CENTER);
       sk.fill(element.color);
-      sk.ellipse(element.x, element.y, element.size, element.size);
+      sk.ellipse(
+        sk.windowWidth/2 + element.x, 
+        sk.windowHeight/2 + element.y, 
+        element.size, element.size
+      );
     });
   };
 

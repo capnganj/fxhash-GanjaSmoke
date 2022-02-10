@@ -36,6 +36,7 @@ const s = ( sk ) => {
     };
 
     //Generate cloud data
+    const cgh = sk.map(feet.cough.value, 0, 1, 0.2, 0.25)
     hyp = sk.windowWidth + sk.windowHeight / 2;
     drawCloud(
       0, 
@@ -44,7 +45,7 @@ const s = ( sk ) => {
       feet.depth.value
     );
     console.log("fxhashFeatures", window.$fxhashFeatures);
-    //console.log("cloudData", cloud);
+    console.log("HashSmokeFeatures", feet);
   };
 
 
@@ -56,7 +57,7 @@ const s = ( sk ) => {
     sk.noStroke();
     
 
-    //TO DO - draw a radial pattern of circles using 
+    //draw circles - keep centered 
     cloud.forEach(element => {
       sk.ellipseMode(sk.CENTER);
       sk.fill(element.color);
@@ -86,12 +87,15 @@ const s = ( sk ) => {
       for (let i = 0; i < branch; i++) {
         let a = sk.map(fxrand(), 0, 1, 0, sk.TWO_PI);
         //use the laugh param to drive how far the cloud spreads out
-        let newX = x + Math.cos(a) * (hyp * 0.0222) * num;
-        let newY = y + Math.sin(a) * (hyp * 0.0222) * num;
+        const spread = hyp * sk.map(feet.laugh.value, 0, 1, 0.02, 0.025);
+        let newX = x + Math.cos(a) * spread * num;
+        let newY = y + Math.sin(a) * spread * num;
         //use the squint param to drive smallest radius
+        const minRadFactor = sk.map(feet.squint.value, 0, 1, 1.4, 1.6);
+        const maxRadFactor = sk.map(feet.squint.value, 0, 1, 2.7, 3.3)
         drawCloud(
           newX, newY, 
-          sk.map(fxrand(),0,1, rad/1.5, rad/3), 
+          sk.map(fxrand(),0,1,rad/minRadFactor,rad/maxRadFactor), 
           num
         );
       }

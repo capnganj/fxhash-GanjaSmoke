@@ -16,18 +16,20 @@ class HashSmokeFeatures {
         }
         this.setDepth();
 
-        //min and max radius multiplier
+        //min and max initial radius multiplier
         this.cough = {
             tag: "",
             value: ""
         };
         this.setCough();
 
-        //min and max opacity
+        //min and max radius factor in new branch
         this.squint = {
             tag: "",
             value: ""
         };
+
+        //spread factor
         this.laugh =  {
             tag: "",
             value: ""

@@ -41,11 +41,11 @@ const s = ( sk ) => {
     drawCloud(
       0, 
       0, 
-      hyp * 0.222, 
+      hyp * cgh, 
       feet.depth.value
     );
-    console.log("fxhashFeatures", window.$fxhashFeatures);
-    console.log("HashSmokeFeatures", feet);
+    //console.log("fxhashFeatures", window.$fxhashFeatures);
+    //console.log("HashSmokeFeatures", feet);
   };
 
 
